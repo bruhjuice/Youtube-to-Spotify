@@ -1,5 +1,5 @@
 import json
-from secrets import spotify_user_id
+from secrets import spotify_user_id, spotify_token
 import youtube_dl
 import requests
 import os
@@ -45,10 +45,11 @@ class CreatePlaylist:
                 item["id"])
 
             # use youtube_dl to collect the song name & artist name
-            video = youtube_dl.YoutubeDL({}).extract_info(
-                youtube_url, download=False)
+            video = youtube_dl.YoutubeDL({}).extract_info(youtube_url, download=False)
             song_name = video["track"]
+            print(song_name)
             artist = video["artist"]
+            print(artist)
 
             if song_name is not None and artist is not None:
                 # save all important info and skip any missing song and artist
@@ -94,6 +95,8 @@ class CreatePlaylist:
             }
         )
         response_json = response.json()
+        print(response_json)
+
         songs = response_json["tracks"]["items"]
 
         # only use the first song
@@ -111,7 +114,7 @@ class CreatePlaylist:
                 for song, info in self.all_song_info.items()]
 
         # create a new playlist
-        playlist_id = self.create_playlist()
+        playlist_id = self.createPlaylist()
 
         # add all songs into new playlist
         request_data = json.dumps(uris)
@@ -128,7 +131,11 @@ class CreatePlaylist:
             }
         )
         if response.status_code != 200:
-            print("did not work")
+            print("did not work" + str(response.status_code))
 
         response_json = response.json()
         return response_json
+
+if __name__ == '__main__':
+    cp = CreatePlaylist()
+    cp.addSongToPlaylist()

@@ -1,0 +1,2 @@
+spotify_token = "BQCKo3tiT-0rAzDWdqBnZfGOAPZHy0-ms_9iqoHwf0SUvzQKCCbieSoSsUNWFdXVJAJo_Kut7dh5HdfbrSasLz7llcHKsUY3M9ablmvR6Kw3Oa21zmrovzitr1dujR_3dK_xXK7pETmfCnX5mN6IFvH_5nEefAmGOTZIt5EjSvbCW314tw"
+spotify_user_id = "ieatapples98"
